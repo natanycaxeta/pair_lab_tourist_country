@@ -1,2 +1,26 @@
-<h1>Tourists#new</h1>
-<p>Find me in app/views/tourists/new.html.erb</p>
+<h1>New Tourist Form</h1>
+
+<%= form_for @tourist do |f| %>
+<%= f.label :name, "Tourist Name" %>
+<%= f.text_field :name %>
+
+    <div>
+      <h2> Add a Country to your log</h2>
+      <%= f.collection_check_boxes :country_ids, Country.all, :id, :name %>
+
+    </div>
+    <div>
+    <h2> Make a Country </h2>
+      <%= f.fields_for :countries, @tourist.countries.build do |t| %>
+        <%= t.label :name, "Country Name" %>
+        <%= t.text_field :name %>
+        <%= t.label :language, "National Language" %>
+        <%= t.text_field :language %>
+        <% end %>
+
+
+      <%= f.submit %>
+      <% end %>
+
+
+</div>

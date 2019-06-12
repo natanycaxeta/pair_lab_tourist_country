@@ -6,11 +6,12 @@ class TouristsController < ApplicationController
 
     def show
       @tourist = Tourist.find(params[:id])
+
     end
 
     def new
       @tourist = Tourist.new
-
+      # @tourist.trips.build
     end
 
     def edit
@@ -18,6 +19,7 @@ class TouristsController < ApplicationController
     end
 
     def create
+      # byebug
       @tourist = Tourist.create(tourist_params)
       redirect_to tourist_path(@tourist)
     end
@@ -36,8 +38,8 @@ class TouristsController < ApplicationController
 
     private
 
-    def tourist_params()
-      params.require(:tourist).permit(:name)
+    def tourist_params
+      params.require(:tourist).permit(:name, countries_attributes: [:name, :language], country_ids: [])
 
     end
   end

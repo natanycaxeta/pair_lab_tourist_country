@@ -1,2 +1,24 @@
-<h1>Tourists#show</h1>
-<p>Find me in app/views/tourists/show.html.erb</p>
+<h1>Tourist</h1>
+
+<h1><%= @tourist.name %></h1><br>
+<h2>Trips</h2>
+
+
+
+
+<br><br>
+
+<p>
+  <%@tourist.countries.each do |displaycountry| %>
+  <%=displaycountry.name %> <br> <%=displaycountry.language%>
+  <% end %>
+  
+</p>
+
+<%= link_to "<-- Return to Index", tourists_path %><br><br>
+
+
+
+<br><br><br>
+<%= button_to "Edit", edit_tourist_path %><br><br>
+<%= button_to "Delete", tourist_path, method: "DELETE" %>
